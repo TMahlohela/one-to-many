@@ -32,7 +32,7 @@ public class UserController {
          userRepository.addPostToUser(user_id, post);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateUser/{id}")
     public ResponseEntity<user> updateUser(@PathVariable Long id,
                                                 @RequestParam String first_name,
                                                 @RequestParam String last_name,
