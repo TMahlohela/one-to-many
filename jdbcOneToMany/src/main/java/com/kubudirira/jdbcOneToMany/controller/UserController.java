@@ -28,19 +28,17 @@ public class UserController {
     }
     
     @PostMapping("/addPost/{id}")
-    public void addPostToUser( @PathVariable("id") int user_id,@RequestBody Post post){
+    public void addPostToUser( @PathVariable("id") int user_id, @RequestBody Post post){
         userRepository.addPostToUser(user_id, post);
     }
 
     @PutMapping("/updateUser/{id}")
-    public ResponseEntity<user> updateUser(@PathVariable Long id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String email) {
-        Student updateUser = userService.updateUser(id, first_name, last_name, email);
-        return ResponseEntity.ok(updateUser);
+    public List<User> updateUser(@PathVariable("id") int user_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String email) {
+        userRepository.updateUser(updateUser);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
-        User updated = userService.updateUserWithPosts(userId, updatedUser);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
+    @PutMapping("/updatePost/{id}")
+    public List<Post> updatePostToUser(@PathVariable("id") int user_id, @RequestBody User updatedUser) {
+        userRepository.updatePostToUser(user_id, post);
     }
 }
